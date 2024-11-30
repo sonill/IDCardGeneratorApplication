@@ -27,7 +27,7 @@ Route::post('register', [AuthController::class, 'register']);  // Handle registr
 Route::get('home', [AuthController::class, 'home'])->name('home')->middleware(valideUser::class);
 
 // Route::middleware('auth')->get('/profile', [ProfileController::class, 'show'])->name('profile');
-// Route::get( 'dashboard',[AuthController::class,'dashboardPage'])->name('dashboard');
+Route::get( 'dashboard',[AuthController::class,'dashboardPage'])->name('dashboard');
 Route::get( 'logout',[AuthController::class,'logout'])->name('logout');
 
 Route::get('/GenerateID',[AuthAdmin::class,'GenerateID'])->name('GenerateID')->middleware(valideUser::class);

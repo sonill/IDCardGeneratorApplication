@@ -7,9 +7,7 @@
     <a href="{{ route('GenerateID') }}">
         <i class="fas fa-id-card"></i> Generate ID
     </a>
-    <a href="{{ route('printID') }}">
-        <i class="fas fa-print"></i> Print ID
-    </a>
+   
     <a href="{{ route('manageSetting') }}">
         <i class="fas fa-cog"></i> Manage Settings
     </a>

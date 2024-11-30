@@ -16,10 +16,7 @@
                         <i class="fas fa-cogs"></i> Manage System Settings
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('printID')}}">
-                        <i class="fas fa-print"></i> Print ID Cards
-                    </a>
+             
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('ViewID')}}">
