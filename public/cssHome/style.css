@@ -1,0 +1,50 @@
+/* Styles for Admin Login Page */
+
+.login-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .login-form {
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f8f9fa;
+  }
+  
+  .login-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .login-form .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .login-form input {
+    border-radius: 5px;
+  }
+  
+  .login-form button {
+    width: 100%;
+    border-radius: 5px;
+  }
+  
+  .forgot-password {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .forgot-password a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .forgot-password a:hover {
+    text-decoration: underline;
+  }
+  
