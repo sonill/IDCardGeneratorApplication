@@ -24,7 +24,7 @@
                             <div class="card mb-4 shadow-sm" style="border: none; border-radius: 15px;">
                                 <!-- ID Card Container with Background -->
                                 <div id="id-card-{{ $list->id }}" 
-                                     style="padding: 20px; border-radius: 10px; 
+                                     style="padding: 20px; border-radius: 35px; 
                                             background-image: url('{{ asset('image/backGround.png') }}'); 
                                             background-size: 450px; 
                                             background-position: center; 

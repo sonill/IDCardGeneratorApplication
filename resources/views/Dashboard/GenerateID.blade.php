@@ -13,54 +13,76 @@
             <!-- Form for ID Generation -->
             <div class="card">
                 <div class="card-body">
+
                     <form id="generate-id-form" action="{{ route('store1') }}" method="POST" enctype="multipart/form-data" novalidate>
                         @csrf
-
+                    
+                        <!-- Global Error Display -->
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                    
                         <!-- Upload Photo -->
                         <div class="mb-3">
                             <label for="photo" class="form-label">
                                 <i class="fas fa-image me-2"></i> Upload Photo
                             </label>
-                            <input type="file" class="form-control" id="photo" name="photo" required>
-                            <div class="invalid-feedback">Please upload a valid photo (JPEG/PNG).</div>
+                            <input type="file" class="form-control @error('photo') is-invalid @enderror" id="photo" name="photo">
+                            @error('photo')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
-
+                    
                         <!-- Name -->
                         <div class="mb-3">
                             <label for="name" class="form-label">
                                 <i class="fas fa-user me-2"></i> Full Name
                             </label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter full name" required>
-                            <div class="invalid-feedback">Please enter your full name.</div>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" placeholder="Enter full name">
+                            @error('name')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
-
+                    
                         <!-- Address -->
                         <div class="mb-3">
                             <label for="address" class="form-label">
                                 <i class="fas fa-map-marker-alt me-2"></i> Address
                             </label>
-                            <input type="text" class="form-control" id="address" name="address" placeholder="Enter address" required>
-                            <div class="invalid-feedback">Please enter your address.</div>
+                            <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}" placeholder="Enter address">
+                            @error('address')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
-
+                    
                         <!-- Date of Birth -->
                         <div class="mb-3">
                             <label for="dob" class="form-label">
                                 <i class="fas fa-calendar-alt me-2"></i> Date of Birth
                             </label>
-                            <input type="date" class="form-control" id="dob" name="dob" required>
-                            <div class="invalid-feedback">Please select a valid date of birth.</div>
+                            <input type="date" class="form-control @error('dob') is-invalid @enderror" id="dob" name="dob" value="{{ old('dob') }}">
+                            @error('dob')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
-
+                    
                         <!-- Card Expiry Date -->
                         <div class="mb-3">
                             <label for="expiry_date" class="form-label">
                                 <i class="fas fa-clock me-2"></i> Card Expiry Date
                             </label>
-                            <input type="date" class="form-control" id="expiry_date" name="expiry_date" required>
-                            <div class="invalid-feedback">Please select a valid expiry date.</div>
+                            <input type="date" class="form-control @error('expiry_date') is-invalid @enderror" id="expiry_date" name="expiry_date" value="{{ old('expiry_date') }}">
+                            @error('expiry_date')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
-
+                    
                         <!-- Contact Number -->
                         <div class="mb-3">
                             <label for="contact_number" class="form-label">
@@ -68,24 +90,28 @@
                             </label>
                             <input 
                                 type="text" 
-                                class="form-control" 
+                                class="form-control @error('contact_number') is-invalid @enderror" 
                                 id="contact_number" 
                                 name="contact_number" 
+                                value="{{ old('contact_number') }}" 
                                 placeholder="Enter contact number" 
-                                pattern="^\d{10}$" 
-                                required>
-                            <div class="invalid-feedback">Please enter a valid 10-digit phone number.</div>
+                                pattern="^\d{10}$">
+                            @error('contact_number')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
-
+                    
                         <!-- Email -->
                         <div class="mb-3">
                             <label for="email" class="form-label">
                                 <i class="fas fa-envelope me-2"></i> Email
                             </label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
-                            <div class="invalid-feedback">Please enter a valid email address.</div>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" placeholder="Enter email">
+                            @error('email')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
-
+                    
                         <!-- Submit Button -->
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary">
@@ -93,6 +119,8 @@
                             </button>
                         </div>
                     </form>
+                    
+                
                 </div>
             </div>
         </div>
