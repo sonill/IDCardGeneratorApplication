@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class AuthController extends Controller
 {
@@ -39,7 +41,12 @@ class AuthController extends Controller
 
     public function home()
     {
-        return view('Dashboard.home');
+        $totalStudents=DB::table('i_d_cards')->count();
+        $activeIDs = DB::table('i_d_cards')
+        ->where('expiry_date', '>', Carbon::now())
+        ->count();
+    //    dd($totalStudents,$activeIDs);
+        return view('Dashboard.home',compact('totalStudents','activeIDs'));
     }
 
     public function register(Request $request)
