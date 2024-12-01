@@ -21,75 +21,57 @@
                 @else
                     @foreach($data1 as $list)
                         <div class="col-md-4">
-                            <div class="card mb-4 shadow-sm">
-                                <!-- Unique ID Card Container -->
-                                <div id="id-card-{{ $list->id }}">
-                                    <div class="card-header bg-dark text-white text-center">
-                                        <h5 class="card-title">
-                                            <i class="fas fa-user me-2"></i> {{ $list->name }}
-                                        </h5>
+                            <div class="card mb-4 shadow-sm" style="border: none; border-radius: 15px;">
+                                <!-- ID Card Container with Background -->
+                                <div id="id-card-{{ $list->id }}" 
+                                     style="padding: 20px; border-radius: 10px; 
+                                            background-image: url('{{ asset('image/backGround.png') }}'); 
+                                            background-size: 450px; 
+                                            background-position: center; 
+                                            background-repeat: no-repeat; 
+                                            opacity: 100;">
+                                    <!-- Logo Header -->
+                                    <div class="text-center mb-3">
+                                        {{-- <img src="{{ asset('image/logo.png') }}" alt="Company Logo" width="50"> --}}
+                                        <h6 class="mt-2" style="font-size: 1.2rem; font-weight: bold;">{{ $list->company_name ?? 'Your Company Name' }}</h6>
                                     </div>
-                                    <div class="card-body text-center">
-                                        <!-- Photo -->
-                                        <img src="{{ asset('storage/' . $list->photo) }}" alt="ID Photo" class="rounded-circle mb-3" width="100" height="100">
-
-                                        <!-- Address -->
-                                        <p class="mb-2">
-                                            <i class="fas fa-map-marker-alt me-2"></i>
-                                            <strong>Address:</strong> {{ $list->address }}
-                                        </p>
-
-                                        <!-- Date of Birth -->
-                                        <p class="mb-2">
-                                            <i class="fas fa-calendar-alt me-2"></i>
-                                            <strong>Date of Birth:</strong> {{ $list->dob }}
-                                        </p>
-
-                                        <!-- Expiry Date -->
-                                        <p class="mb-2">
-                                            <i class="fas fa-clock me-2"></i>
-                                            <strong>Expiry Date:</strong> {{ $list->expiry_date }}
-                                        </p>
-
-                                        <!-- Contact Number -->
-                                        <p class="mb-2">
-                                            <i class="fas fa-phone me-2"></i>
-                                            <strong>Contact:</strong> {{ $list->contact_number }}
-                                        </p>
-
-                                        <!-- Email -->
-                                        <p class="mb-0">
-                                            <i class="fas fa-envelope me-2"></i>
-                                            <strong>Email:</strong> {{ $list->email }}
-                                        </p>
+            
+                                    <!-- Photo -->
+                                    <div class="text-center mb-3">
+                                        <img src="{{ asset('storage/' . $list->photo) }}" alt="ID Photo" class="rounded-circle" width="90" height="90" style="border: 3px solid #004aad;">
                                     </div>
-                                    <div class="card-footer text-center">
-                                        <small class="text-muted">
-                                            <i class="fas fa-info-circle me-2"></i> ID Card Valid Until {{ $list->expiry_date }}
-                                        </small>
+            
+                                    <!-- Name and Role -->
+                                    <div class="text-center mb-3">
+                                        <h5 class="mb-0" style="font-size: 1.4rem; color:rgb(226, 235, 243) font-weight: bold;">{{ strtoupper($list->name) }}</h5>
+                                        <small style="font-size: 1rem; color: #555;">{{ $list->role ?? 'Employee' }}</small>
+                                    </div>
+            
+                                    <!-- Details Section -->
+                                    <div class="text-start ps-3">
+                                        <p class="mb-2" style="font-size: 1rem; font-weight: bold;"><strong>ID No:</strong>  {{ $list->id }}</p>
+                                        <p class="mb-2" style="font-size: 1rem;"><strong>Email:</strong>  {{ $list->email }}</p>
+                                        <p class="mb-2" style="font-size: 1rem;"><strong>Phone:</strong>  {{ $list->contact_number }}</p>
+                                        <p class="mb-2" style="font-size: 1rem;"><strong>Address:</strong>  {{ $list->address }}</p>
+                                        <p class="mb-2" style="font-size: 1rem;"><strong>Date of Birth:</strong>  {{ $list->dob }}</p>
+                                        <p class="mb-2" style="font-size: 1rem;"><strong>Expiry Date:</strong>  {{ $list->expiry_date }}</p>
                                     </div>
                                 </div>
-                                
-                                <div class="card-footer text-center">
+            
+                                <!-- Footer with Actions -->
+                                <div class="text-center mt-3">
                                     <!-- Delete Form -->
-                                    <form action="{{ route('removeID', $list->id) }} " class="d-inline" method="POST" onsubmit="return confirm('Are you sure you want to delete this ID card?');">
+                                    <form action="{{ route('removeID', $list->id) }}" class="d-inline" method="POST" onsubmit="return confirm('Are you sure you want to delete this ID card?');">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Delete</button>
                                     </form>
-                                    {{-- <form action="{{route('delete'),$list->$id}}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this ID card?');">
-                                        @csrf
-                                       
-                                        <button type="submit" class="btn btn-danger btn-sm">
-                                            <i class="fas fa-trash-alt"></i> Delete
-                                        </button>
-                                    </form> --}}
                                     
                                     <!-- Update Button -->
                                     <a href="{{ route('edit', $list->id) }}" class="btn btn-primary btn-sm">
                                         <i class="fas fa-edit"></i> Update
                                     </a>
-
+            
                                     <!-- Print Button -->
                                     <button class="btn btn-success btn-sm" onclick="printID({{ $list->id }})">
                                         <i class="fas fa-print"></i> Print
@@ -100,6 +82,7 @@
                     @endforeach
                 @endif
             </div>
+            
         </div>
     </div>
 </div>
